@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Note: Replace [YOUR_APP] and [YOUR_ADDON] variables -->
+<project name="[YOUR_APP]" default="package">
+
+	<!-- This property will be the name of the folder in which app is created -->
+	<property name="APP" value="[YOUR_APP]"/>
+
+	<!--
+	This property will be the name of a Technology Add on (TA).
+        You may not have any, or you may have multiple.
+	Here is an exmple of building multiple add ons https://github.com/splunk/splunk-template-xenapp/blob/master/app/build.xml
+	-->
+	<property name="ADDON" value="[YOUR_ADDON]"/>
+
+	<!-- This property is the version number and will appear in app.conf within the app and add ons. -->
+	<property name="VERSION" value="1.0.0"/>
+
+	<!-- This property is the build number and will appear in app.conf within the app and add ons. -->
+	<!-- The build number is incremented each time you run the build script -->
+	<buildnumber/>
+
+	<!-- This property specifies the path where the final app is built relative to the current path.  --> 
+	<property name="build.dir" value="build"/>
+
+	<!-- This property specifies where add ons will be placed.  Notice the use of the APP property name -->
+	<property name="addon.dir" value="build/${APP}/appserver/addons" />
+
+	<!-- This property formats the name of the compressed file that can be uploaded to apps.splunk.com -->
+	<property name="dist.file" value="${build.dir}/dist/${APP}-${VERSION}.tar.gz"/>
+
+	<!--
+	Targets are command line parameters to ant.
+	This parameter will delete anything in the current build directory to ensure we are running a clean build.
+	-->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<!--
+	This target builds and packages the app.
+	Notice this is the default action from the <project> tag above.
+	Also notice the dependency on "build".  This means build will run before package.
+	-->
+	
+	<target name="package" depends="build">
+		<mkdir dir="${build.dir}/dist" />
+		<tar destfile="${dist.file}" longfile="gnu" compression="gzip">
+			<tarfileset dir="${build.dir}" filemode="755" username="splunk" group="splunk">
+				<include name="${APP}/**"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<!-- This target has 2 dependencies. -->
+	<target name="build" depends="build-app,build-addon">
+	</target>
+
+	<!-- Creates the app directory in the build folder, copies over files (except exclusions), and updates app.conf -->
+	<!-- All app.conf files should specify the following:
+		[install]
+		build = @BUILDNUMBER@
+
+		[launcher]
+		version = @VERSION@
+	-->
+	<target name="build-app">
+		<mkdir dir="${build.dir}/${APP}"/>
+
+		<copy todir="${build.dir}/${APP}" filtering="off" verbose="on">
+			<fileset dir="${APP}">
+				<exclude name="**/.*" />
+				
+				<!-- including a local directory in a distribution app is a big no-no -->
+				<exclude name="local/" />
+				<exclude name="**/*-gist" />
+				<exclude name="**/*.xcf" />
+				<exclude name="**/*.d/**" />
+				<exclude name="default/app.conf" />
+			</fileset>
+		</copy>
+
+		<echo>Build Number is ${build.number}</echo>
+		<copy todir="${build.dir}/${APP}/default" file="${APP}/default/app.conf" verbose="on">
+			<filterset>
+				<filter token="BUILDNUMBER" value="${build.number}" />
+			</filterset>
+			<filterset>
+				<filter token="VERSION" value="${VERSION}" />
+			</filterset>
+		</copy>
+	</target>
+
+	<!-- Creates the add on directory in the appropriate folder, copies over files (except exclusions), and updates app.conf -->
+	<target name="build-addon">
+		<mkdir dir="${addon.dir}"/>
+		
+		<copy todir="${addon.dir}/${ADDON}" filtering="off" verbose="on">
+			<fileset dir="${ADDON}">
+				<exclude name="**/.*" />
+				<exclude name="local/**" />
+				<exclude name="**/*-gist" />
+				<exclude name="**/*.xcf" />
+				<exclude name="**/*.d/**" />
+				<exclude name="default/app.conf" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${addon.dir}/${ADDON}/default" file="${ADDON}/default/app.conf" verbose="on">
+			<filterset>
+				<filter token="BUILDNUMBER" value="${build.number}"/>
+			</filterset>
+			<filterset>
+				<filter token="VERSION" value="${VERSION}"/>
+			</filterset>
+		</copy>
+	</target>
+
+
+</project>
