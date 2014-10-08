@@ -1,0 +1,49 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Component Calendar</label>
+    
+    <row>
+        <html>
+            <p>
+                This dashboard displays the number of Components seen in the _internal index each day.  A saved search is run to populate a csv file daily in order to speed things up.  Here is the search string:
+            </p>
+            <p>
+                <pre><code>index=_internal sourcetype=splunkd |
+bucket _time span=1d |
+stats dc(component) AS Components by _time |
+convert timeformat="%m/%d/%Y" ctime(_time) AS date |
+stats count by date,Components |
+inputlookup append=t calendar_components.csv |
+stats max(Components) AS Components by date |
+table date Components |
+outputlookup calendar_components.csv</code></pre>
+            </p>
+        </html>
+    </row>
+    <row>
+        <html>
+            <h2>Components by Day</h2>
+            <div id="calSearch"
+                 class="splunk-manager"
+                 data-require="splunkjs/mvc/searchmanager"
+                 data-options='{
+                    "search": "| inputlookup calendar_components.csv",
+                    "cancelOnUnload": true,
+                    "preview": true
+                 }'>
+            </div>
+            
+             <div id="eventCalendar"
+                 class="splunk-view"
+                 data-require="app/SplunkConf2014Example/components/eventcalendar/eventcalendar"
+                 data-options='{
+                    "managerid": "calSearch",
+                    "valueField": "Components",
+                    "dateField": "date",
+                    "linkUrl": "/app/SplunkConf2014Example/search",
+                    "destFormField": "date"
+                 }'>
+            </div>
+             
+        </html>
+    </row>
+</dashboard>

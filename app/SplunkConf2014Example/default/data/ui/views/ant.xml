@@ -1,0 +1,45 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Apache Ant</label>
+    
+    <row>
+        <html>
+            <p>
+                <h1>Apache Ant (Automation)</h1>
+
+                <a href="http://ant.apache.org/" target="_blank">Apache Ant</a> is a cross platform build automation engine.
+                The build is controlled by a build.xml file.
+                This app includes a sample <a href="/static/app/SplunkConf2014Example/build.xml.txt" target="_blank">build.xml.txt</a> file that has several comments to get you started.
+            
+                <pre><code>
+                <a href="/static/app/SplunkConf2014Example/build.xml.txt" target="_blank"> >> Sample BUILD.XML</a>
+                </code>
+                </pre>
+            </p>
+            
+            <p>
+                To build the project, complete the template file and type the following on the command line:
+            </p>
+            
+            <p>
+                <code>ant clean build</code> will clean out the app directory and build the app.
+            </p>
+                
+            <p>
+                Other command line parameters can be passed as well:
+            
+                <ul>
+                    <li>
+                        <code>ant clean package</code> will do the same thing as above, but will also create a compressed file of the app that can be uploaded
+                        to <a href="http://apps.splunk.com" target="_blank">apps.splunk.com</a>.
+                    </li>
+                    <li>
+                        You can create your own parameters as well.  For instance: <br />
+                        <code>ant clean build test</code> will copy over some files for testing purposes.
+                    </li>
+                </ul>
+            </p>
+            
+        </html>
+    </row>
+    
+</dashboard>

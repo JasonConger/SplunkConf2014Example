@@ -1,0 +1,29 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Symbolic Links</label>
+    
+    <row>
+        <html>
+            <p>
+                <h1>Symbolic Links</h1>
+
+                Once the build process is up and running, I like to create symbolic links from the build directory to <code>$SPLUNK_HOME/etc/apps</code>.
+                
+            </p>
+            
+            <p>
+                Here is an example I use:
+                
+                <pre>
+ln -s /[your build directory]/SplunkConf2014Example/app/build/SplunkConf2014Example $SPLUNK_HOME/etc/apps/</pre>
+            </p>
+            
+            <p>
+                If you have separate add-ons in the build, link those too:
+                <pre>
+ln –s /[your build directory]/SplunkConf2014Example/app/build/SplunkConf2014Example/appserver/addons/TA_SplunkConf2014Example $SPLUNK_HOME/etc/apps/</pre>
+            </p>
+            
+        </html>
+    </row>
+    
+</dashboard>

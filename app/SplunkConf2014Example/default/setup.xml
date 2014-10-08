@@ -1,0 +1,9 @@
+<setup>
+    <block title="Setup">
+        <text><![CDATA[
+Redirecting you to the setup screen...
+
+<script> window.location = '/dj/en-us/redirector/SplunkConf2014Example/setup'; </script>
+        ]]></text>
+    </block>
+</setup>

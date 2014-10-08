@@ -1,0 +1,40 @@
+<dashboard>
+  <label>Eventgen Data</label>
+  <description>Data from the TA appears here.</description>
+  <row>
+    <panel>
+      <html>
+        This dashboard displays some data gernerated from an event generator.
+        You will need the Splunk <a href="https://github.com/splunk/eventgen" target="_blank">eventgen</a> app in order for this to work.
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Top 5 Failed Destinations</title>
+        <searchString>sourcetype=eventgen action="fail*"| top limit=5 dest</searchString>
+        <earliestTime>-24h@h</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

@@ -1,0 +1,5 @@
+[credential::test:]
+password = $1$eNNz+5s=
+
+[install]
+is_configured = 1

@@ -1,0 +1,12 @@
+<nav search_view="search" color="#0072C6">
+  <view name="home" default='true' />
+  <view name="ant" />
+  <view name="links" />
+  <view name="setup_screen" />
+  <view name="copy_ta" />
+  <view name="calendar" />
+  <view name="eventgen_data" />
+  <view name="search" />
+  <view name="data_models" />
+  <view name="dashboards" />
+</nav>

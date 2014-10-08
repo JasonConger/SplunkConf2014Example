@@ -72,7 +72,7 @@
 				<exclude name="**/.*" />
 				
 				<!-- including a local directory in a distribution app is a big no-no -->
-				<exclude name="local/**" />
+				<exclude name="local/" />
 				<exclude name="**/*-gist" />
 				<exclude name="**/*.xcf" />
 				<exclude name="**/*.d/**" />

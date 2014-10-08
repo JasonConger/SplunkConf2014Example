@@ -1,0 +1,36 @@
+{% extends "splunkdj:base_with_app_bar.html" %}
+
+{% load splunkmvc %}
+
+{% block title %}Setup view for Splunk .conf 2014 Example App{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}splunkdj/setup.css" />
+{% endblock css %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2>Setup view for .conf 2014 Example App</h2>
+                <form class="splunkdj-setup-form" method="post" action="">
+		    <p>
+			Apps often require configuration before they can be used.
+			For example an app may contain a scripted input that requires
+			authentication credentials for it to function.
+		    </p>
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-primary" type="submit" value="Save" />
+                    {% if configured %}
+                        <a class="btn" href="{% url 'SplunkConf2014Example:home' %}">Cancel</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

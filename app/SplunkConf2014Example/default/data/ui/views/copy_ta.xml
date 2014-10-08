@@ -1,0 +1,40 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Copy TA 1st Run</label>
+    
+    <row>
+        <html>
+            <p>
+                <h1>Copying the Add-on (TA) to $SPLUNK_HOME/etc/apps on the 1st Run</h1>
+
+                A lot of times, an end user will use both the Splunk app and TA on the same machine.  To make things easier,
+                you can include a script that copies and/or configures the TA o nthe first launch of the app.
+                
+                This is accomplished by using a scripted input in <code>inputs.conf</code> that looks like this:
+                
+                <pre>
+[script://./bin/scripted_inputs/deploy_ta.py]
+interval = -1
+index=_internal
+sourcetype=ta:installer
+disabled = 0
+passAuth = splunk-system-user
+
+[script://.\\bin\\scripted_inputs\\deploy_ta.py]
+interval = -1
+index=_internal
+sourcetype=ta:installer
+disabled = 0
+passAuth = splunk-system-user
+</pre>
+            </p>
+            
+            <p>
+                This tells splunk to run deploy_ta.py at starup (interval=-1).
+                Check out this example app to see the code behind deploy_ta.py.
+            </p>
+            
+            
+        </html>
+    </row>
+    
+</dashboard>

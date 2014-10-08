@@ -1,0 +1,48 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Home</label>
+    
+    <row>
+        <panel>
+            <html>
+                <p>
+                    <h1>Welcome to the Splunk .conf 2014 Example App</h1>
+                    The goal of this application is to demonstrate several concepts about Splunk application build automation.  Concepts covered include the following:
+                </p>
+        </html>
+        </panel>
+        
+    </row>
+    
+    <row>
+        <panel>
+            <html>
+                <h2><a href="/app/SplunkConf2014Example/ant">Apache Ant</a></h2>
+                Build autoamtion.
+            </html>
+        </panel>
+        
+        <panel>
+            <html>
+                <h2><a href="/app/SplunkConf2014Example/links">Symbolic Links</a></h2>
+                Link your build to your Splunk install.
+            </html>
+        </panel>
+    </row>
+    
+    <row>
+        <panel>
+            <html>
+                <h2><a href="/app/SplunkConf2014Example/setup_screen">Setup Screens</a></h2>
+                UI for app setup.
+            </html>
+        </panel>
+        
+        <panel>
+            <html>
+                <h2><a href="/app/SplunkConf2014Example/copy_ta">Copy TA on 1st run</a></h2>
+                Less work for the user to do.
+            </html>
+        </panel>
+    </row>
+    
+</dashboard>

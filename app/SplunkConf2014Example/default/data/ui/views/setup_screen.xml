@@ -1,0 +1,34 @@
+<dashboard stylesheet="calendar.css" script="autodiscover.js">
+    <label>Setup Screens</label>
+    
+    <row>
+        <html>
+            <p>
+                <h1>Setup Screens</h1>
+
+                Setup screens give the user a nice way of configuring required parameters.  Splunk applications know whether setup is complete by
+                looking at the app.conf file.
+            </p>
+            
+            <p style="padding-top: 30px">
+                The setup screen for this example app can be found here -> <a href="http://localhost:8000/dj/en-us/SplunkConf2014Example/setup/">http://localhost:8000/dj/en-us/SplunkConf2014Example/setup/</a>
+            </p>
+            
+            <p style="padding-top: 30px">
+                Every time the ant build process runs, the app.conf file is reset back to the original state which makes you run through the setup
+                process every time.  To avoid this, copy <code>app.conf</code> from
+                <code>$SPLUNK_HOME/etc/apps/SplunkConf2014Example/local/app.conf</code>
+                to your build directory as <code>app.local</code>.  Then, add the following to <code>build.xml</code>
+                
+                <pre>
+&lt;target name="test"&gt;
+    &lt;copy tofile="${build.dir}/${APP}/local/app.conf" file="app.local" filtering="off" verbose="on"&gt;
+    &lt;/copy&gt;
+&lt;/target&gt;
+</pre>
+            </p>
+            
+        </html>
+    </row>
+    
+</dashboard>

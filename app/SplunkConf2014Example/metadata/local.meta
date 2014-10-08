@@ -1,0 +1,34 @@
+[app/ui]
+version = 6.2
+modtime = 1412116481.468221000
+
+[app/launcher]
+version = 6.2
+modtime = 1412116481.473541000
+
+[setup/auth]
+version = 6.2
+modtime = 1412179761.213187000
+
+[app/install/is_configured]
+version = 6.2
+modtime = 1412197987.673892000
+
+[app/credential%3A%3Atest%3A]
+owner = admin
+version = 6.2
+modtime = 1412197987.644366000
+
+[props/eventgen/EXTRACT-action]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.4
+modtime = 1412206209.697711000
+
+[props/eventgen/EXTRACT-app]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.4
+modtime = 1412206327.760518000
